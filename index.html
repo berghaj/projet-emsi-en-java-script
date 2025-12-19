@@ -39,8 +39,19 @@
                     <h5>Total Employés</h5>
                     <h2 id="totalEmployees">0</h2>
                 </div>
+                <div class="kpi">
+                    <h5>Hommes</h5>
+                    <h2 id="maleEmployees">0</h2>
+                </div>
 
-                <canvas id="employeeChart"></canvas>
+                <div class="kpi">
+                    <h5>Femmes</h5>
+                    <h2 id="femaleEmployees">0</h2>
+                </div>
+                <div style="display: flex;">
+                    <canvas id="employeeChart" style="margin-right: 10px;"></canvas>
+                    <canvas id="genderChart"></canvas>
+                </div>
             </section>
 
             
@@ -50,6 +61,7 @@
                 <form id="employeeForm">
                     <input type="text" id="name" placeholder="Nom" name="name" required>
                     <input type="text" id="role" placeholder="Poste" name="role" required>
+                    <input type="text" id="gender" placeholder="Female/Male/Other" name="gender">
                     <button type="submit">Ajouter</button>
                 </form>
 
