@@ -146,6 +146,19 @@ form button {
     font-weight: 600;
     transition: background var(--transition-speed), transform var(--transition-speed);
 }
+.sort {
+    padding: 12px 18px;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    border: 1px solid #ccc;
+    transition: all var(--transition-speed);
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background var(--transition-speed), transform var(--transition-speed);
+}
 form button:hover {
     background-color: #3b36b1;
     transform: translateY(-2px);

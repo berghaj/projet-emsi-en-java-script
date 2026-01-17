@@ -27,6 +27,10 @@ function renderEmployees() {
                         onclick="deleteEmployee(${index})">
                         Supprimer
                     </button>
+                    <button class="btn btn-danger btn-sm"
+                        onclick="editEmployee(${index})">
+                        Modifier
+                    </button>
                 </td>
             </tr>
         `;
@@ -39,6 +43,7 @@ function loadRandomUsers(count = 10) {
     fetch(`https://randomuser.me/api/?results=${count}`)
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             data.results.forEach(user => {
                 employees.push({
                     name: `${user.name.first} ${user.name.last}`,
@@ -76,6 +81,52 @@ function deleteEmployee(index) {
     }
 }
 
+function sortAll() {
+    employeeList.innerHTML = "";
+    employees.sort((a, b) => a.name.localeCompare(b.name));
+    renderEmployees();
+}
+
+document.querySelector(".search").addEventListener("click", e => {
+    e.preventDefault();
+    const v = document.querySelector("#search").value;
+    
+    let elements = [];
+    employees.forEach(f => {
+        if (f.name.toLowerCase().search(v) > -1) {
+            elements.push(f);
+        }
+    })
+    employeeList.innerHTML = "";
+    elements.forEach((emp, index) => {
+        employeeList.innerHTML += `
+            <tr>
+                <td>${emp.name}</td>
+                <td>${emp.role}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm"
+                        onclick="deleteEmployee(${index})">
+                        Supprimer
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                        onclick="editEmployee(${index})">
+                        Modifier
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+  
+})
+
+function editEmployee(id) {
+    if (confirm("la modification d'un employee doit etre complete, sinon l'employee va etre supprimer. Voulez vous continuer?")) {
+        document.querySelector("#name").value = employees[id].name;
+        document.querySelector("#role").value = employees[id].role;
+        document.querySelector("#gender").value = employees[id].gender;
+        deleteEmployee(id);
+    }
+}
 
 let departments = JSON.parse(localStorage.getItem("departments")) || [];
 const departmentList = document.getElementById("departmentList");
